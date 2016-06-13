@@ -11,11 +11,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.fastestorder.dto.FOLanguage;
-import com.fastestorder.dto.FOMenu;
-import com.fastestorder.dto.FOMenuCategory;
-import com.fastestorder.dto.FOMenuItem;
-import com.fastestorder.dto.FORestaurant;
+import com.fastestorder.model.menu.FOLanguage;
+import com.fastestorder.model.menu.FOMenu;
+import com.fastestorder.model.menu.FOMenuCategory;
+import com.fastestorder.model.menu.FOMenuItem;
+import com.fastestorder.model.menu.FORestaurant;
 
 /**
  * Root resource (exposed at "rm" path)
@@ -41,14 +41,14 @@ public class RMResource {
 	Currency baseCurrency = Currency.getInstance("TRY");
 	List<FOMenuCategory> calegories = new ArrayList<>();
 	List<FOMenuItem> items = new ArrayList<>();
-	items.add(new FOMenuItem("süpangüle", 12.4));
-	items.add(new FOMenuItem("keşkül", 1.442332));
-	FOMenuCategory categoriTatlilar = new FOMenuCategory("Tatlılar", items);
+	items.add(new FOMenuItem(1, "süpangüle", 12.4));
+	items.add(new FOMenuItem(2, "keşkül", 1.442332));
+	FOMenuCategory categoriTatlilar = new FOMenuCategory(2, "Tatlılar", items);
 	calegories.add(categoriTatlilar);
 	items = new ArrayList<>();
-	items.add(new FOMenuItem("yayla", 9012.6784));
-	items.add(new FOMenuItem("tarhana", 1213123.442332));
-	FOMenuCategory categoriÇorbalar = new FOMenuCategory("Çorbalar", items);
+	items.add(new FOMenuItem(1, "yayla", 9012.6784));
+	items.add(new FOMenuItem(2, "tarhana", 1213123.442332));
+	FOMenuCategory categoriÇorbalar = new FOMenuCategory(1, "Çorbalar", items);
 	calegories.add(categoriÇorbalar);
 	FOMenu menu = new FOMenu(baseCurrency, calegories);
 	result.setMenu(menu);
@@ -59,4 +59,5 @@ public class RMResource {
 	result.setSupportedLanguages(supportedLanguages);
 	return result;
     }
+
 }
